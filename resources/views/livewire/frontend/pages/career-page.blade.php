@@ -9,7 +9,7 @@
             </div>
         </div>
         @foreach ($careers as $item)
-            <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="col-sm-12 col-md-6 col-lg-4" >
                 <div class="card card-sm">
                     <a href="{{ route('p.career.details', $item->slug) }}" class="d-block"><img
                             src="{{ Storage::url($item->image) }}" class="card-img-top" height="300"></a>

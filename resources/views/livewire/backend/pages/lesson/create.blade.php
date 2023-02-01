@@ -7,7 +7,6 @@
                     <div class="d-flex">
                         <a href="{{ route('pages.lesson.index') }}" class="btn btn-yellow ms-auto">Go Back</a>
                     </div>
-                    {{-- <h3 class="card-title">Data Lesson</h3> --}}
                 </div>
                 <div class="card-body border-bottom py-3">
                     <div class="col-md-6 col-xl-12">
@@ -20,7 +19,6 @@
                                 @error('code_lesson')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
-
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Name Lesson</label>

@@ -61,20 +61,9 @@
                                         <span class="badge bg-danger me-1"></span> {{ $lesson->name_lesson }}
                                     </td>
                                     <td class="text-end">
-                                        <span class="dropdown">
-                                            <button class="btn dropdown-toggle align-text-top"
-                                                data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item"
-                                                    href="{{ route('pages.lesson.edit', $lesson->uuid) }}">
-                                                    Edit
-                                                </a>
-                                                <a class="dropdown-item" href="#"
-                                                    wire:click.prevent="$emit('confirmDelete', {{ json_encode($lesson->uuid) }})">
-                                                    Delete
-                                                </a>
-                                            </div>
-                                        </span>
+                                        <a class="btn btn-yellow btn-icon" href="{{ route('pages.lesson.edit', $lesson->uuid) }}">Edit</a>
+                                        <a class="btn btn-red btn-icon" href="#"
+                                            wire:click.prevent="$emit('confirmDelete', {{ json_encode($lesson->uuid) }})">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -95,13 +84,13 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="modal-title">Are you sure?</div>
-                    <div>If you want to delete, deleted data cannot be restored.</div>
+                    <div>If you want to delete this data {{ $name_lesson }}, it cannot be restored</div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-link link-secondary me-auto"
                         data-bs-dismiss="modal">Cancel</button>
                     <button wire:click.prevent="delete()" type="button" class="btn btn-danger"
-                        data-bs-dismiss="modal">Yes, delete {{ $name_lesson }}</button>
+                        data-bs-dismiss="modal">Yes, delete</button>
                 </div>
             </div>
         </div>

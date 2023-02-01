@@ -8,7 +8,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-12 col-md-12">
+        <div class="col-xl-12 col-md-12" wire:poll>
             <div class="row row-cards">
                 <div class="col-xl-12 col-md-12">
                     <div class="card">

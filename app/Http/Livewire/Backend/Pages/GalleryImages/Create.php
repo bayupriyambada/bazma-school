@@ -14,6 +14,14 @@ class Create extends Component
     public $picture;
     use WithFileUploads;
 
+    public function updated($fields)
+    {
+        $this->validateOnly($fields, [
+            'name' => 'required|min:1|max:100',
+            'picture' => 'required|max:1024|mimes:jpg,png,jpeg',
+        ]);
+    }
+
     public function resetFields()
     {
         $this->name = '';
@@ -22,17 +30,17 @@ class Create extends Component
 
     public function create()
     {
-        DB::transaction(function () {
-            $validatedData = $this->validate([
-                'name' => 'required|min:1|max:100',
-                'picture' => 'max:1024|mimes:jpg,png,jpeg',
-            ]);
+        $this->validate([
+            'name' => 'required|min:1|max:100',
+            'picture' => 'required|max:1024|mimes:jpg,png,jpeg',
+        ]);
+        DB::transaction(function ($validatedData) {
 
             GalleryImagesModel::create([
                 'uuid' => (string) Str::uuid(),
                 'name' => $this->name,
                 'user_id' => auth()->user()->id,
-                'picture' =>   $validatedData['picture'] = $this->picture->store('gallery-images', 'public')
+                'picture' =>   $this->picture = $this->picture->store('gallery-images', 'public')
             ]);
 
             $this->dispatchBrowserEvent(

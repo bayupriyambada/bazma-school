@@ -4,9 +4,12 @@ namespace App\Http\Livewire\Backend\Pages\Career;
 
 use Livewire\Component;
 use App\Models\CareerModel;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Route;
 
 class Create extends Component
 {
@@ -15,6 +18,7 @@ class Create extends Component
     public $content;
     public $registration_deadline;
     public $link_url;
+    public $slug;
     public $image;
     use WithFileUploads;
 
@@ -25,6 +29,22 @@ class Create extends Component
         $this->image = '';
         $this->registration_deadline = '';
         $this->link_url = '';
+    }
+
+    public function generateSlug()
+    {
+        $this->slug = 'typing slug: ' . Str::slug($this->name) . Date('y') . '-' . Str::random(5);
+    }
+
+    public function updated($fields)
+    {
+        $this->validateOnly($fields, [
+            'name' => 'required|min:1|max:150',
+            'content' => 'required|min:1|max:5000',
+            'registration_deadline' => 'required|date|after:tomorrow',
+            'link_url' => 'required',
+            'image' => 'required|max:1024|mimes:jpg,png,jpeg',
+        ]);
     }
 
     public function create()
@@ -40,7 +60,7 @@ class Create extends Component
 
             CareerModel::create([
                 'name' => $this->name,
-                'slug' => Str::slug($this->name),
+                'slug' => Str::slug($this->name) . Date('y') . '-' . Str::random(5),
                 'content' => $this->content,
                 'registration_deadline' => $this->registration_deadline,
                 'link_url' => $this->link_url,

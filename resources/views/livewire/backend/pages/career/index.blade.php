@@ -87,7 +87,6 @@
                                             href="{{ route('pages.career.edit', $item->slug) }}">Edit</a>
                                         <a class="btn btn-red btn-icon" href="#"
                                             wire:click.prevent="$emit('confirmDelete', {{ json_encode($item->id) }})">Delete</a>
-
                                     </td>
                                 </tr>
                             @endforeach
@@ -108,13 +107,13 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="modal-title">Are you sure?</div>
-                    <div>If you want to delete, deleted data cannot be restored.</div>
+                    <div>If you want to delete this data {{ $name }}, it cannot be restored</div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-link link-secondary me-auto"
                         data-bs-dismiss="modal">Cancel</button>
                     <button wire:click.prevent="delete()" type="button" class="btn btn-danger"
-                        data-bs-dismiss="modal">Yes, delete {{ $name }}</button>
+                        data-bs-dismiss="modal">Yes, delete</button>
                 </div>
             </div>
         </div>

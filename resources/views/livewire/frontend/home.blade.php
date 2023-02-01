@@ -18,43 +18,88 @@
         <div class="col-md-12 col-xl-12">
             <div class="row row-cards">
                 <div class="col-md-7 col-lg-9 col-sm-12">
-                    <h3><b>Recent Career</b></h3>
                     <div class="row row-cards">
-                        @foreach ($otherCareers as $item)
-                            <div class="col-sm-12 col-md-6 col-lg-4">
-                                <div class="card card-sm">
-                                    <a href="{{ route('p.career.details', $item->slug) }}" class="d-block"><img
-                                            src="{{ Storage::url($item->image) }}" class="card-img-top"
-                                            height="200"></a>
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center">
-                                            <div>
-                                                <div>{{ $item->name }}</div>
-                                                <div class="text-muted">{{ $item->created_at->diffForHumans() }}</div>
+                        <div class="col-12">
+                            <h3><b>Recent Career</b></h3>
+                            <div class="row row-cards">
+                                @foreach ($otherCareers as $item)
+                                    <div class="col-sm-12 col-md-6 col-lg-4">
+                                        <div class="card card-sm">
+                                            <a href="{{ route('p.career.details', $item->slug) }}" class="d-block"><img
+                                                    src="{{ Storage::url($item->image) }}" class="card-img-top"
+                                                    height="200"></a>
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center">
+                                                    <div>
+                                                        <div>{{ $item->name }}</div>
+                                                        <div class="text-muted">{{ $item->created_at->diffForHumans() }}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <h3><b>Recent Image</b></h3>
+                            <div class="row row-cards">
+                                @foreach ($galleryImage as $item)
+                                    <div class="col-sm-12 col-md-6 col-lg-4">
+                                        <div class="card card-sm">
+                                            <img src="{{ Storage::url($item->picture) }}" class="card-img-top" height="200">
+                                            <div class="card-body">
+                                                <div class="d-flex align-items-center">
+                                                    <div>
+                                                        <div>{{ $item->name }}</div>
+                                                        <div class="text-muted">{{ $item->created_at->diffForHumans() }}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-lg-3 col-sm-12">
+                    <div class="row row-cards">
+                        <div class="col-12">
+                            <h3><b>Information</b></h3>
+                            @foreach ($information as $item)
+                                <div class="col-sm-12 col-md-6 col-lg-12">
+                                    <div class="card card-sm mb-2">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                    <div><b>{{ $item->name }}</b></div>
+                                                    <div class="text-muted">{{ $item->created_at->diffForHumans() }}</div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                <div class="col-md-5 col-lg-3 col-sm-12">
-                    <h3><b>Subjects</b></h3>
-                    @foreach ($lessons as $item)
-                        <div class="col-sm-12 col-md-6 col-lg-12">
-                            <div class="card card-sm mb-2">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div>
-                                            <div><b>{{ $item->name_lesson }}</b></div>
-                                            <div class="text-muted">{{ $item->code_lesson }}</div>
+                            @endforeach
+                        </div>
+                        <div class="col-12">
+                            <h3><b>Subjects</b></h3>
+                            @foreach ($lessons as $item)
+                                <div class="col-sm-12 col-md-6 col-lg-12">
+                                    <div class="card card-sm mb-2">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                    <div><b>{{ $item->name_lesson }}</b></div>
+                                                    <div class="text-muted">{{ $item->code_lesson }}</div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
-                    @endforeach
+                    </div>
                 </div>
 
             </div>
