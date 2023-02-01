@@ -38,10 +38,9 @@ class Index extends Component
 
     public function confirmDelete($dataId)
     {
-        $confirm = CareerModel::where('uuid', $dataId)->first();
-        $this->dataId = $confirm->uuid;
+        $confirm = CareerModel::where('id', $dataId)->first();
+        $this->dataId = $confirm->id;
         $this->name = $confirm->name;
-        $this->picture = $confirm->picture;
         $this->dispatchBrowserEvent('showModalDelete');
     }
 
@@ -49,7 +48,7 @@ class Index extends Component
     {
         DB::transaction(function () {
             $deleteData = CareerModel::find($this->dataId);
-            Storage::delete($deleteData->picture);
+            Storage::delete($deleteData->image);
             $deleteData->delete();
             $this->dispatchBrowserEvent(
                 'alert',

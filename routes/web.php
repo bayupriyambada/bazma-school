@@ -8,6 +8,8 @@ use App\Http\Livewire\Frontend\Pages\CareerPage;
 use App\Http\Livewire\Frontend\Pages\ContactPage;
 use App\Http\Livewire\Frontend\Pages\GalleryImagesPage;
 use App\Http\Livewire\Frontend\Pages\GalleryPage;
+use App\Http\Livewire\Frontend\Pages\Information\DetailPage as InformationDetailPage;
+use App\Http\Livewire\Frontend\Pages\InformationPage;
 use App\Http\Livewire\Frontend\Pages\StudentsPage;
 use App\Http\Livewire\Frontend\Pages\TeacherPage;
 use App\Http\Livewire\Frontend\Pages\VisionMissionPage;
@@ -22,10 +24,12 @@ Route::prefix('p')->name('p.')->group(function () {
     Route::get('/students', StudentsPage::class)->name('students');
     Route::get('/career', CareerPage::class)->name('career');
     Route::get('/career/c/{slug}', CareerDetailPage::class)->name('career.details');
+    Route::get('/information', InformationPage::class)->name('information');
+    Route::get('/information/c/{slug}', InformationDetailPage::class)->name('information.details');
 });
 Route::get('/contact', ContactPage::class)->name('contact');
 Route::group(['middleware' => ['guest']], function () {
-    Route::get('/authentication/bazma/login', Login::class)->name('auth.login');
+    Route::get('/authentication/login', Login::class)->name('auth.login');
 });
 
 require 'backend.php';

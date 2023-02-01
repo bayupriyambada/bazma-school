@@ -12,15 +12,20 @@ class Create extends Component
     public $code_lesson;
     public $name_lesson;
 
+    protected $rules = [
+        'code_lesson' => 'required|alpha_dash|min:1|max:6',
+        'name_lesson' => 'required',
+    ];
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
 
     public function create()
     {
-        $this->validate([
-            'code_lesson' => 'required|alpha_dash|min:1|max:6',
-            'name_lesson' => 'required',
-        ]);
-
         DB::transaction(function () {
+            $this->validate();
             $checkCode = LessonModel::where('code_lesson', $this->code_lesson)->first();
             if (empty($checkCode->code_lesson)) {
                 LessonModel::create([
@@ -42,6 +47,8 @@ class Create extends Component
                 return redirect()->back();
             }
         });
+        $this->resetErrorBag();
+        $this->resetValidation();
     }
     public function render()
     {

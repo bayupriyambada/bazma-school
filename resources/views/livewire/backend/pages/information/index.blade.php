@@ -48,35 +48,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($teachers as $teacher)
+                            @foreach ($information as $item)
                                 <tr>
                                     <td><input class="form-check-input m-0 align-middle" type="checkbox"
                                             aria-label="Select invoice"></td>
                                     <td><span class="text-muted">{{ $loop->iteration }}</span></td>
                                     <td>
-                                        <div class="d-flex py-1 align-items-center">
-                                            @if ($teacher->picture)
-                                                <span class="avatar me-2"
-                                                    style="background-image: url({{ asset('storage') }}/{{ $teacher->picture }})"></span>
-                                            @else
-                                                <span class="avatar me-2"
-                                                    style="background-image: url(https://ui-avatars.com/api/?name={{ $teacher->name }})"></span>
-                                            @endif
-                                            <div class="flex-fill">
-                                                <div class="font-weight-medium">{{ $teacher->name }}</div>
-                                                <div class="text-muted"><a href="#"
-                                                        class="text-reset">lmiona@livejournal.com</a></div>
-                                            </div>
-                                        </div>
+                                        {{ $item->name }}
                                     </td>
                                     <td>
-                                        <span class="badge bg-danger me-1"></span> {{ $teacher->lesson->name_lesson }}
+                                        <span class="badge bg-danger me-1"></span> {{ $item->slug }}
                                     </td>
                                     <td class="text-end">
                                         <a class="btn btn-yellow btn-icon"
-                                            href="{{ route('pages.teacher.edit', $teacher->uuid) }}">Edit</a>
+                                            href="{{ route('pages.information.edit', $item->uuid) }}">Edit</a>
                                         <a class="btn btn-red btn-icon" href="#"
-                                            wire:click.prevent="$emit('confirmDelete', {{ json_encode($teacher->uuid) }})">Delete</a>
+                                            wire:click.prevent="$emit('confirmDelete', {{ json_encode($item->uuid) }})">Delete</a>
 
                                     </td>
                                 </tr>
@@ -85,7 +72,7 @@
                     </table>
                 </div>
                 <div class="card-footer d-flex align-items-center">
-                    {{ $teachers->links() }}
+                    {{ $information->links() }}
                 </div>
             </div>
         </div>
@@ -98,13 +85,13 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="modal-title">Are you sure?</div>
-                    <div>If you want to delete, deleted data cannot be restored.</div>
+                    <div>If you want to delete this data {{ $name }}, it cannot be restored</div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-link link-secondary me-auto"
                         data-bs-dismiss="modal">Cancel</button>
                     <button wire:click.prevent="delete()" type="button" class="btn btn-danger"
-                        data-bs-dismiss="modal">Yes, delete {{ $name }}</button>
+                        data-bs-dismiss="modal">Yes, Delete!</button>
                 </div>
             </div>
         </div>
