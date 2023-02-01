@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\Files\UploadController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Backend\Dashboard;
-use App\Http\Livewire\Backend\Pages\{VisionMision, Donation};
+use App\Http\Livewire\Backend\Pages\{AboutSchool, VisionMision, Donation};
 use App\Http\Livewire\Backend\Pages\Agenda\{Index as AgendaIndex, Edit as AgendaEdit, Create as AgendaCreate};
 use App\Http\Livewire\Backend\Pages\Career\{Create as CareerCreate, Edit as CareerEdit, Index as CareerIndex};
 use App\Http\Livewire\Backend\Pages\Gallery\{Index as GalleryIndex, Create as GalleryCreate, Edit as GalleryEdit};
@@ -12,6 +13,7 @@ use App\Http\Livewire\Backend\Pages\Lesson\{Index, Edit, Create};
 use App\Http\Livewire\Backend\Pages\Teacher\{Index as TeacherIndex, Edit as TeacherEdit, Create as TeacherCreate};
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::post('upload-images-editor', [UploadController::class, 'uploadImageEditor'])->name('uploadImageEditor');
     Route::get('dashboard', Dashboard::class)->name('dashboard');
     Route::prefix('pages')->name('pages.')->group(function () {
         Route::get('/donation', Donation::class)->name('donation');
@@ -52,5 +54,6 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/create', InformationCreate::class)->name('create');
             Route::get('/{uuid}/edit', InformationEdit::class)->name('edit');
         });
+        Route::get('/about-school', AboutSchool::class)->name('about.school');
     });
 });

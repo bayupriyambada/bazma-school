@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Frontend\Pages\Career;
 
 use Livewire\Component;
 use App\Models\CareerModel;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class DetailPage extends Component
 {

@@ -2,18 +2,28 @@
 <div>
     <form wire:submit.prevent="create">
         <div class="row row-cards">
+            <div class="col-12">
+                <div class="card d-sm-flex d-md-none d-lg-none">
+                    <div class="card-body">
+                        <a href="{{ route('pages.career.index') }}" class="btn btn-yellow ms-auto">Go Back</a>
+                        <button type="submit" class="btn btn-primary">Publish</button>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-12 col-xl-8">
                 <div class="row row-cards">
+
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
                                 <label class="form-label required">Title</label>
-                                <input type="text" wire:model.defer="name"
+                                <input type="text" wire:model.debounce.5000ms="name" wire:keyup.debounce.5000ms="generateSlug"
                                     class="form-control @error('name') is-invalid @enderror" name="example-text-input"
                                     placeholder="Eg: Career Example">
                                 @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                                <small class="form-hint"><span wire:model.defer="slug">{{ $slug }}</span></small>
                             </div>
                         </div>
                     </div>
@@ -22,7 +32,7 @@
                             <div class="card-body">
                                 <label class="form-label">Description (Optional)</label>
                                 <div wire:ignore>
-                                    <textarea cols="10" style="height: 300px;" wire:change="content" class="form-control" name="content"
+                                    <textarea cols="10" style="height: 300px;" wire:model.debounce.5000ms="content" class="form-control" name="content"
                                         id="content"></textarea>
                                 </div>
                             </div>
@@ -33,14 +43,13 @@
             <div class="col-md-12 col-xl-4">
                 <div class="row row-cards">
                     <div class="col-12">
-                        <div class="card">
+                        <div class="card d-sm-none d-md-flex d-lg-flex">
                             <div class="card-body">
                                 <a href="{{ route('pages.career.index') }}" class="btn btn-yellow ms-auto">Go Back</a>
                                 <button type="submit" class="btn btn-primary">Publish</button>
                             </div>
                         </div>
                     </div>
-
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
@@ -56,12 +65,13 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <label class="form-label required">Url Registration</label>
-                                <input type="text" wire:model.defer="link_url" class="form-control"
-                                    name="example-text-input" placeholder="Eg: {{ URL::to('/') }}">
+                                <label class="form-label required">Url Deadline</label>
+                                <input type="text" wire:model.debounce.5000ms="link_url"
+                                    class="form-control @error('link_url') is-invalid @enderror" name="example-text-input"
+                                    placeholder="Eg: {{ URL::to('/') }}">
                                 <small class="form-hint">Hint: Provide the correct url, if empty (#)</small>
                                 @error('link_url')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -69,16 +79,14 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="mb-3">
-                                    <label class="form-label required">Datepicker</label>
-                                    <input type="date" wire:model.defer="registration_deadline"
-                                        class="form-control mb-2"
-                                        placeholder="{{ Carbon\Carbon::today()->format('d/m/Y') }}"
-                                        id="datepicker-default">
-                                    @error('registration_deadline')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                                <label class="form-label required">Datepicker</label>
+                                <input type="date" wire:model.debounce.5000ms="registration_deadline"
+                                    class="form-control mb-2"
+                                    placeholder="{{ Carbon\Carbon::today()->format('d/m/Y') }}"
+                                    id="datepicker-default">
+                                @error('registration_deadline')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>

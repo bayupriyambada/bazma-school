@@ -13,7 +13,7 @@
                         <form wire:submit.prevent="create()">
                             <div class="mb-3">
                                 <label class="form-label">Your Name</label>
-                                <input type="text" wire:model.defer="name"
+                                <input type="text" wire:model.debounce.5000ms="name"
                                     class="form-control @error('name') is-invalid @enderror" name="example-text-input"
                                     placeholder="Eg: Teacher Example">
                                 @error('name')
@@ -22,7 +22,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Picture</label>
-                                <input type="file" class="form-control" id="exampleInputName" wire:model="picture">
+                                <input type="file" class="form-control" id="exampleInputName" wire:model.debounce.500ms="picture">
                                 <div wire:loading wire:target="picture">Uploading...</div>
                                 @error('picture')
                                     <div class="invalid-feedback">{{ $message }}</div>
