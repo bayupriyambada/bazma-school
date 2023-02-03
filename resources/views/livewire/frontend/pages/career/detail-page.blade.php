@@ -8,6 +8,8 @@
                 </div>
             </div>
         </div>
+        {{-- @dump($closed <= $registration_deadline) --}}
+        @if ($closed <= $registration_deadline)
         <div class="col-xl-12 col-md-12 col-12">
             <div class="row row-cards">
                 <div class="col-xl-4 col-md-4 col-12">
@@ -72,6 +74,7 @@
                                         <h3>Career Registration Deadline:</h3>
                                     </b>
                                     <p>{{ $registration_deadline ?? 'Not Found' }}</p>
+
                                 </div>
                             </div>
                         </div>
@@ -94,6 +97,16 @@
                 </div>
             </div>
         </div>
+        @else
+        <div class="col-xl-12 col-md-12 col-12">
+            <div class="empty">
+                <div class="empty-img">
+                </div>
+                <p class="empty-title text-danger">Tutup</p>
+
+            </div>
+        </div>
+        @endif
         <div class="col-xl-12 col-md-12">
             <h3>Other Career</h3>
             <div class="row row-cards">

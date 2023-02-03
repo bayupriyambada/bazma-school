@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('about_school', function (Blueprint $table) {
-            $table->uuid()->index();
+            $table->id()->index();
             $table->string('site_title');
             $table->string('tag_title')->nullable();
             $table->string('logo')->nullable();

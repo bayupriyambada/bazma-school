@@ -9,9 +9,9 @@
                             <div class="card-body">
                                 <form wire:submit.prevent="updateTitleAndTag()">
                                     <div class="mb-3">
-                                        <label class="form-label required">Name Gallery</label>
+                                        <label class="form-label required">Site Title</label>
                                         <input type="text" wire:model="site_title" class="form-control @error('name') is-invalid @enderror"
-                                            name="example-text-input" placeholder="Eg: Gallery Example">
+                                            name="example-text-input" placeholder="Eg: Site Title ">
                                         @error('site_title')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -27,7 +27,7 @@
                                     <div class="mb-3">
                                         <label class="form-label required">Phone Number</label>
                                         <input type="text" wire:model="phone_number" class="form-control @error('phone_number') is-invalid @enderror"
-                                            name="example-text-input" placeholder="Eg: TagLine School">
+                                            name="example-text-input" placeholder="Eg: Phone Number">
                                         @error('phone_number')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -35,7 +35,7 @@
                                     <div class="mb-3">
                                         <label class="form-label required">Address</label>
                                         <input type="text" wire:model="address" class="form-control @error('address') is-invalid @enderror"
-                                            name="example-text-input" placeholder="Eg: TagLine School">
+                                            name="example-text-input" placeholder="Eg: Address">
                                         @error('address')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -43,7 +43,7 @@
                                     <div class="mb-3">
                                         <label class="form-label required">Email</label>
                                         <input type="text" wire:model="email" class="form-control @error('email') is-invalid @enderror"
-                                            name="example-text-input" placeholder="Eg: TagLine School">
+                                            name="example-text-input" placeholder="Eg: Email">
                                         @error('email')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -51,7 +51,7 @@
                                     <div class="mb-3">
                                         <label class="form-label required">Location (embed google maps)</label>
                                         <input type="text" wire:model="location" class="form-control @error('location') is-invalid @enderror"
-                                            name="example-text-input" placeholder="Eg: TagLine School">
+                                            name="example-text-input" placeholder="Eg: Embed Google Maps">
                                         @error('location')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
