@@ -18,7 +18,7 @@ class AboutSchool extends Component
 
     public function mount()
     {
-        $this->aboutPages = AboutSchoolModel::first();
+        $this->aboutPages = AboutSchoolModel::where("id", 1)->firstOrFail();
         $this->site_title = $this->aboutPages->site_title;
         $this->tag_title = $this->aboutPages->tag_title;
         $this->phone_number = $this->aboutPages->phone_number;
@@ -44,13 +44,13 @@ class AboutSchool extends Component
         $this->validate([
             'site_title' => 'required|min:1|max:20',
             'tag_title' => 'nullable|min:3|max:60',
-            'phone_number' => 'nullable|min:3|max:15|numeric',
+            'phone_number' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:9',
             'address' => 'nullable|',
             'email' => 'nullable',
             'location' => 'nullable',
         ]);
 
-        $this->aboutPages->where('uuid', 'efde7e2d-9c0c-4743-852d-f91f89f5e768')->first()->update([
+        $this->aboutPages->update([
             'site_title' => $this->site_title,
             'tag_title' => $this->tag_title,
             'phone_number' => $this->phone_number,
