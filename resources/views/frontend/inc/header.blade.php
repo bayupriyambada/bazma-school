@@ -87,8 +87,31 @@
             </span>
         </a>
     </li>
-    <li class="nav-item {{ request()->routeIs('p.vision-mission') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('p.vision-mission') }}">
+    <li class="nav-item dropdown {{ request()->routeIs('p.vision-mission') ? 'active' : '' }}">
+        <a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown"
+            data-bs-auto-close="outside" role="button" aria-expanded="false">
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-album" width="24"
+                    height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                    <path d="M12 4v7l2 -2l2 2v-7"></path>
+                </svg>
+            </span>
+            <span class="nav-link-title">
+                Groups
+            </span>
+        </a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item {{ request()->routeIs('p.vision-mission') ? 'active' : '' }}"
+                href="{{ route('p.vision-mission') }}">
+                Vision & Mission
+            </a>
+        </div>
+    </li>
+    <li class="nav-item {{ request()->routeIs('p.donation') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('p.donation') }}">
             <span class="nav-link-icon d-md-none d-lg-inline-block">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-files" width="24"
                     height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -100,7 +123,7 @@
                 </svg>
             </span>
             <span class="nav-link-title">
-                Vision & Mission
+                Donation
             </span>
         </a>
     </li>
@@ -127,7 +150,9 @@
     <li class="nav-item {{ request()->routeIs('p.information') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('p.information') }}">
             <span class="nav-link-icon d-md-none d-lg-inline-block">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-info-square" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-info-square"
+                    width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                    fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <line x1="12" y1="8" x2="12.01" y2="8"></line>
                     <rect x="4" y="4" width="16" height="16" rx="2"></rect>

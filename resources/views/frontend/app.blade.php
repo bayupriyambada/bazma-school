@@ -70,7 +70,7 @@
                                     <path d="M12.5 15.5l2 2"></path>
                                     <path d="M15 13l2 2"></path>
                                 </svg>
-                                Donation
+                                Information PPDB
                             </a>
                         </div>
                     </div>
@@ -89,11 +89,12 @@
             </div>
         </div>
         <div class="page-wrapper">
-            <div class="container-xl">
+            {{ $slot }}
+            {{-- <div class="container-xl">
                 <div class="page-body">
-                    {{ $slot }}
+
                 </div>
-            </div>
+            </div> --}}
             @include('frontend.inc.footer')
         </div>
     </div>
